@@ -1,8 +1,8 @@
-n = int(input())
+n = int(input())  # n * n의 정사각형 입력
 
-x, y = 1, 1
+x, y = 1, 1 # 가장 왼쪽 위 좌표는 (1,1)
 
-plans = input().split()
+plans = input().split()  # 상하좌우를 입력받음
 
 # LRUD에 따른 이동 방향
 dx = [0, 0, -1, 1]  # x축이 행을 의미 y축이 열을 의미
