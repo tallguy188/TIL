@@ -18,20 +18,23 @@ c = a
 
 d = b
 
-new_a = str.replace('6','5')
-a = int(a)
-print(a)
+new_a = a.replace('6','5')
+new_a = int(new_a)
+print(new_a)
 
-new_b = str.replace('6','5')
-b = int(b)
-print(b)
+new_b = b.replace('5','6')
+new_b = int(new_b)
+print(new_b)
+
+'''
 
 new_c = str.replace('5','6')
-c = int(c)
-print(c)
+new_c= int(new_c)
+print(new_c)
 new_d = str.replace('5','6')
-d = int(d)
-print(d)
+new_d = int(new_d)
+print(new_d)
+'''
 '''       
 e = a+b
 f = c+d
