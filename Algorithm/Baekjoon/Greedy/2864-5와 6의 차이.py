@@ -20,27 +20,26 @@ d = b
 
 new_a = a.replace('6','5')
 new_a = int(new_a)
-print(new_a)
 
-new_b = b.replace('5','6')
+
+new_b = b.replace('6','5')
 new_b = int(new_b)
-print(new_b)
 
-'''
 
-new_c = str.replace('5','6')
+new_c = c.replace('5','6')
 new_c= int(new_c)
-print(new_c)
-new_d = str.replace('5','6')
+
+new_d = d.replace('5','6')
 new_d = int(new_d)
-print(new_d)
-'''
-'''       
-e = a+b
-f = c+d
+
+#print(new_a,new_b,new_c,new_d)
+
+
+e = new_a + new_b
+f = new_c + new_d
 
 print(e,f)
-'''
+
 
     
 
