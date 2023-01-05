@@ -10,7 +10,7 @@
 '''
 
 
-
+'''
 n = int(input())
 
 a = 1000 - n
@@ -42,8 +42,13 @@ if a<5:
 
 
 print(count)
-
-        
+'''
+i = 1000 -int(input())
+s = 0
+for c in [500,100,50,10,5]:
+    s+=i//c
+    i = i%c
+print(s + i)
         
         
         
