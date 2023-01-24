@@ -13,7 +13,7 @@
 
 '''
 
-
+'''
 a = input()
 
 num = a.count('X')
@@ -34,13 +34,45 @@ for i in range(len(split_a)):
     
     b = len(split_a[i])
 
-    '''
-    if len(split_a[i]) == 2:
-        split_a[i] = 'BB'
-    '''
 
     print(b)
-    
+'''
 
-    
+n = input()
+N = list()
+for i in range(len(n)) : #문자열을 리스트로 바꾸기
+    N.append(n[i]) 
+c = 0 #개수를 세는 변수
+E = 0 #문제가 생기면 1, 아니면 0
+r = N 
+for i in range(len(N)) :
+    c += 1 #개수 세기
+    if (N[i] == ".") | (i == (len(N)-1)): #.이거나 문자열의 끝
+        if (N[i] == ".") :
+            c -= 1 #.까지 셌으니까 하나 빼주기
+        if c % 2 != 1 :
+            A = i-c #수정할 부분의 시작
+            B = i   #끝
+            if (i == (len(N)-1)) :
+                A = i-c+1 #문자열의 끝까지 오면 하나씩 더해줌
+                B = i+1 #얘도 똑같이 더해줌
+            while(True) :
+                if (A + 4) <= B : #4개 이상 바꿀 수 있으면 
+                    r[A:A+4] = "AAAA"
+                    A += 4
+                elif (A + 2) <= B : #2개만 되면
+                    r[A:A+2] = "BB"
+                    A += 2
+                else : # A == B
+                    break
+        else : # 개수가 홀수면
+            E = 1
+        c = 0
+if E : 
+    print(-1)
+else :
+    R = ''
+    for i in r :
+        R += i
+    print(R)
 
