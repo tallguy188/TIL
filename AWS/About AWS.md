@@ -53,3 +53,23 @@ S3에서 사용되는 용어
 
 
 
+#### CloudFront 란 무엇인가
+
+------
+
+CloudFront 란 AWS에서 제공하는 CDN서비스이다. 캐싱을 통해 사용자에게 좀 더 빠른 전송 속도를 제공함을 목적으로 한다. CloudFront는 전 세계 이곳저곳에 Edge Server(Location)을 두고 Client에 가장 가까운 Edge Server를 찾아 Latency를 최소화시켜 빠른 데이터를 제공한다.
+
+![클라우드프론트](C:\Users\cksgh\OneDrive\바탕 화면\공부하는거 사진\클라우드프론트.png)
+
+* Origin Server:  원본 데이터를 갖고 있는 서버이다. 보통 AWS에서의 Origin server는 S3, EC2 instance이다. 
+* Edge Server: AWS에서 실질적으로 제공하는 전 세계에 퍼져있는 서버이다. Edge Server에는 요청받은 데이터에 대해서 같은 요청에 대해서 빠르게 응답해주기 위해 Cache기능을 제공한다. 
+
+##### 데이터 전송 과정
+
+* 1. 클라이언트로부터 Edge Server로의 요청이 발생
+  2. Edge Server는 요청이 발생한 데이터에 대하여 캐싱 여부를 확인
+  3. 사용자의 근거리에 위치한 Edge Server 중 캐싱 데이터가 존대한다면 사용자의 요청에 맞는 데이터로 응답
+  4. 사용자의 요청에 적합한 데이터가 캐싱되어 있지 않은 경우 Origin Server로 요청이 포워딩됨
+  5. 요청받은 데이터에 대해 Origin Server에서 획득한 후 Edge Server에 캐싱 데이터를 생성하고, 클라이언트로 응답이 발생
+
+  
