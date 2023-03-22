@@ -86,3 +86,99 @@
     ```
 
     
+
+#### 도메인 주도 설계 기본 요소
+
+* Entity
+
+  * 실제 DB테이블과 매핑되어 있는 클래스로 DB테이블내에 존재하는 컬럼만을 속성(필드)로 갖음
+  * 식별자를 갖음
+
+  ```java
+  @Getter
+  @Entity
+  @NoArgsConstructor
+  public class Posts {
+  
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTIFY)
+      private Long id;
+  
+      @Column
+      private String title;
+  
+      @Column
+      private String content;
+  
+      private String author;
+  
+      public Posts(String title, String content, String author) {
+          this.title = title;
+          this.content = content;
+          this.author = author;
+      }
+  ```
+
+* VO(Value Object) 
+
+  * 불변성을 갖음. 따라서 DB에서 읽을 값을 VO에 담을 경우, 이 VO값이 DB데이터 원본으로서 신뢰할 수 있음 
+  * Read Only
+  * 값이 같다면 같은 객체로 판단 
+
+  ```java
+  @Getter
+  public class PostsVO {
+  
+      private Long id;
+      private String title;
+      private String content;
+      private String author;
+  
+      @Override
+      public boolean equals(Object o) {
+          if (this == o) return true;
+          if (o == null || getClass() != o.getClass()) return false;
+          PostsVO postsVO = (PostsVO) o;
+          return Objects.equals(id, postsVO.id) && Objects.equals(title, postsVO.title) && Objects.equals(content, postsVO.content) && Objects.equals(author, postsVO.author);
+      }
+  
+      @Override
+      public int hashCode() {
+          return Objects.hash(id, title, content, author);
+      }
+  }
+  ```
+
+* DTO(Data Transfer Object) 
+
+  * DTO는 데이터 접근 메소드 외에 기능을 갖지 않음
+  * getter/setter
+  * 값을 유연하게 변경가능
+  * temp
+
+  ```java
+  @Getter
+  @NoArgsConstructor
+  public class PostsSaveRequestDto {
+      private String title;
+      private String content;
+      private String author;
+  
+      @Builder
+      public PostsSaveRequestDto(String title, String content, String author) {
+          this.title = title;
+          this.content = content;
+          this.author = author;
+      }
+      
+      public Posts toEntity() {
+          return Posts.builder()
+                  .title(title)
+                  .content(content)
+                  .author(author)
+                  .build();
+      }
+  }
+  ```
+
+  Client **<-DTO->** controller(web) **<-DTO->** service **<-DTO->** repository(DAO) **<-Entity->** DB
