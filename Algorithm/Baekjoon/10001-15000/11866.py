@@ -1,13 +1,37 @@
 from collections import deque
 
-# Contain 1, 2, 3, 4, 5 in deq
-deq = deque([1, 2, 3, 4, 5])
+n,k = map(int,input().split())
 
-deq.rotate(1)
-print(deq)
-# deque([5, 1, 2, 3, 4])
+deq = deque()
+for i in range(n):
+    deq.append(i+1)
 
-deq.rotate(-1)
-print(deq)
-# deque([1, 2, 3, 4, 5])
+    # [1,2,3,4,5,6,7]
+
+result = []
+
+start = 0
+while deq:      # 데크가 비어있지 않은 동안 반복을 실행
+    start = (start+k-1) % len(deq)
+    removed = deq[start]
+    deq.remove(removed)
+    result.append(str(removed))
+
+
+output = "<" + ", ".join(result) + ">"
+print(output)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
