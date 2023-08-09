@@ -31,12 +31,6 @@ class Solution {
     }
 }
 
-
-
-
-
-
-
 public class level2_끝말잇기 {
     public static void main(String[] args) {
         Solution solution = new Solution();
